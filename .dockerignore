@@ -11,8 +11,6 @@ LICENSE
 README.md
 
 # Ignore environment examples and sensitive info
-.env
-*.local
 *.example
 
 # Ignore node modules, logs and cache files

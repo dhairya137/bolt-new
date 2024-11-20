@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
       target: bolt-ai-production
     ports:
-      - "5173:5173"
-    env_file: ".env.local"
+      - '5173:5173'
+    env_file: '.env.local'
     environment:
       - NODE_ENV=production
       - COMPOSE_PROFILES=production
@@ -20,9 +20,12 @@ services:
       - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
       - OLLAMA_API_BASE_URL=${OLLAMA_API_BASE_URL}
       - VITE_LOG_LEVEL=${VITE_LOG_LEVEL:-debug}
+      - AMAZON_BEDROCK_REGION=${AMAZON_BEDROCK_REGION}
+      - AMAZON_BEDROCK_ACCESS_KEY_ID=${AMAZON_BEDROCK_ACCESS_KEY_ID}
+      - AMAZON_BEDROCK_SECRET_ACCESS_KEY=${AMAZON_BEDROCK_SECRET_ACCESS_KEY}
     command: pnpm run dockerstart
     profiles:
-      - production  # This service only runs in the production profile
+      - production # This service only runs in the production profile
 
   bolt-ai-dev:
     image: bolt-ai:development
@@ -34,7 +37,7 @@ services:
       - VITE_HMR_HOST=localhost
       - VITE_HMR_PORT=5173
       - CHOKIDAR_USEPOLLING=true
-      - WATCHPACK_POLLING=true  
+      - WATCHPACK_POLLING=true
       - PORT=5173
       - GROQ_API_KEY=${GROQ_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
@@ -43,6 +46,9 @@ services:
       - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
       - OLLAMA_API_BASE_URL=${OLLAMA_API_BASE_URL}
       - VITE_LOG_LEVEL=${VITE_LOG_LEVEL:-debug}
+      - AMAZON_BEDROCK_REGION=${AMAZON_BEDROCK_REGION}
+      - AMAZON_BEDROCK_ACCESS_KEY_ID=${AMAZON_BEDROCK_ACCESS_KEY_ID}
+      - AMAZON_BEDROCK_SECRET_ACCESS_KEY=${AMAZON_BEDROCK_SECRET_ACCESS_KEY}
     volumes:
       - type: bind
         source: .
@@ -50,6 +56,6 @@ services:
         consistency: cached
       - /app/node_modules
     ports:
-      - "5173:5173"  # Same port, no conflict as only one runs at a time
+      - '5173:5173' # Same port, no conflict as only one runs at a time
     command: pnpm run dev --host 0.0.0.0
-    profiles: ["development", "default"]  # Make development the default profile
+    profiles: ['development', 'default'] # Make development the default profile

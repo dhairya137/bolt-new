@@ -6,7 +6,8 @@ export const MODIFICATIONS_TAG_NAME = 'bolt_file_modifications';
 export const MODEL_REGEX = /^\[Model: (.*?)\]\n\n/;
 //export const DEFAULT_MODEL = 'claude-3-5-sonnet-20240620';
 //export const DEFAULT_PROVIDER = 'Anthropic';
-export const DEFAULT_MODEL = 'anthropic.claude-3-5-haiku-20241022-v1:0';
+// export const DEFAULT_MODEL = 'anthropic.claude-3-5-haiku-20241022-v1:0';
+export const DEFAULT_MODEL = 'us.anthropic.claude-3-5-haiku-20241022-v1:0';
 export const DEFAULT_PROVIDER = 'AmazonBedrock';
 
 const staticModels: ModelInfo[] = [
@@ -21,12 +22,14 @@ const staticModels: ModelInfo[] = [
   { name: 'qwen/qwen-110b-chat', label: 'OpenRouter Qwen 110b Chat (OpenRouter)', provider: 'OpenRouter' },
   { name: 'cohere/command', label: 'Cohere Command (OpenRouter)', provider: 'OpenRouter' },
   { name: 'gemini-1.5-flash-latest', label: 'Gemini 1.5 Flash', provider: 'Google' },
-  { name: 'gemini-1.5-pro-latest', label: 'Gemini 1.5 Pro', provider: 'Google'},
-  { name: 'llama-3.1-70b-versatile', label: 'Llama 3.1 70b (Groq)', provider: 'Groq' },
-  { name: 'llama-3.1-8b-instant', label: 'Llama 3.1 8b (Groq)', provider: 'Groq' },
-  { name: 'llama-3.2-11b-vision-preview', label: 'Llama 3.2 11b (Groq)', provider: 'Groq' },
-  { name: 'llama-3.2-3b-preview', label: 'Llama 3.2 3b (Groq)', provider: 'Groq' },
-  { name: 'llama-3.2-1b-preview', label: 'Llama 3.2 1b (Groq)', provider: 'Groq' },
+  { name: 'gemini-1.5-pro-latest', label: 'Gemini 1.5 Pro', provider: 'Google' },
+  // { name: 'llama-3.1-70b-versatile', label: 'Llama 3.1 70b (Groq)', provider: 'Groq' },
+  // { name: 'llama-3.1-8b-instant', label: 'Llama 3.1 8b (Groq)', provider: 'Groq' },
+  // { name: 'llama-3.2-11b-vision-preview', label: 'Llama 3.2 11b (Groq)', provider: 'Groq' },
+  // { name: 'llama-3.2-3b-preview', label: 'Llama 3.2 3b (Groq)', provider: 'Groq' },
+  // { name: 'llama-3.2-1b-preview', label: 'Llama 3.2 1b (Groq)', provider: 'Groq' },
+  { name: 'us.meta.llama3-2-90b-instruct-v1:0', label: 'Llama 3.2 90b AWS', provider: 'AmazonBedrock' },
+  { name: 'us.meta.llama3-2-11b-instruct-v1:0', label: 'Llama 3.2 11b AWS', provider: 'AmazonBedrock' },
   { name: 'claude-3-opus-20240229', label: 'Claude 3 Opus', provider: 'Anthropic' },
   { name: 'claude-3-sonnet-20240229', label: 'Claude 3 Sonnet', provider: 'Anthropic' },
   { name: 'claude-3-haiku-20240307', label: 'Claude 3 Haiku', provider: 'Anthropic' },
@@ -34,8 +37,8 @@ const staticModels: ModelInfo[] = [
   { name: 'gpt-4-turbo', label: 'GPT-4 Turbo', provider: 'OpenAI' },
   { name: 'gpt-4', label: 'GPT-4', provider: 'OpenAI' },
   { name: 'gpt-3.5-turbo', label: 'GPT-3.5 Turbo', provider: 'OpenAI' },
-  { name: 'deepseek-coder', label: 'Deepseek-Coder', provider: 'Deepseek'},
-  { name: 'deepseek-chat', label: 'Deepseek-Chat', provider: 'Deepseek'},
+  { name: 'deepseek-coder', label: 'Deepseek-Coder', provider: 'Deepseek' },
+  { name: 'deepseek-chat', label: 'Deepseek-Chat', provider: 'Deepseek' },
   { name: 'open-mistral-7b', label: 'Mistral 7B', provider: 'Mistral' },
   { name: 'open-mixtral-8x7b', label: 'Mistral 8x7B', provider: 'Mistral' },
   { name: 'open-mixtral-8x22b', label: 'Mistral 8x22B', provider: 'Mistral' },
@@ -45,18 +48,19 @@ const staticModels: ModelInfo[] = [
   { name: 'mistral-small-latest', label: 'Mistral Small', provider: 'Mistral' },
   { name: 'codestral-latest', label: 'Codestral', provider: 'Mistral' },
   { name: 'mistral-large-latest', label: 'Mistral Large Latest', provider: 'Mistral' },
-  { name: 'anthropic.claude-3-5-sonnet-20241022-v2:0', label: 'Claude 3.5 Sonnet v2', provider: 'AmazonBedrock' },
+  // { name: 'anthropic.claude-3-5-sonnet-20241022-v2:0', label: 'Claude 3.5 Sonnet v2', provider: 'AmazonBedrock' },
+  { name: 'us.anthropic.claude-3-5-sonnet-20241022-v2:0', label: 'Claude 3.5 Sonnet v2', provider: 'AmazonBedrock' },
   { name: 'anthropic.claude-3-5-sonnet-20240620-v1:0', label: 'Claude 3.5 Sonnet v1', provider: 'AmazonBedrock' },
-  { name: 'anthropic.claude-3-5-haiku-20241022-v1:0', label: 'Claude 3.5 Haiku', provider: 'AmazonBedrock' },
+  { name: 'us.anthropic.claude-3-5-haiku-20241022-v1:0', label: 'Claude 3.5 Haiku', provider: 'AmazonBedrock' },
 ];
 
 export let MODEL_LIST: ModelInfo[] = [...staticModels];
 
 async function getOllamaModels(): Promise<ModelInfo[]> {
   try {
-    const base_url = import.meta.env.OLLAMA_API_BASE_URL || "http://localhost:11434";
+    const base_url = import.meta.env.OLLAMA_API_BASE_URL || 'http://localhost:11434';
     const response = await fetch(`${base_url}/api/tags`);
-    const data = await response.json() as OllamaApiResponse;
+    const data = (await response.json()) as OllamaApiResponse;
     return data.models.map((model: OllamaModel) => ({
       name: model.name,
       label: `${model.name} (${model.details.parameter_size})`,
@@ -68,32 +72,31 @@ async function getOllamaModels(): Promise<ModelInfo[]> {
 }
 
 async function getOpenAILikeModels(): Promise<ModelInfo[]> {
- try {
-   const base_url =import.meta.env.OPENAI_LIKE_API_BASE_URL || "";
-   if (!base_url) {
+  try {
+    const base_url = import.meta.env.OPENAI_LIKE_API_BASE_URL || '';
+    if (!base_url) {
       return [];
-   }
-   const api_key = import.meta.env.OPENAI_LIKE_API_KEY ?? "";
-   const response = await fetch(`${base_url}/models`, {
-     headers: {
-       Authorization: `Bearer ${api_key}`,
-     }
-   });
-    const res = await response.json() as any;
+    }
+    const api_key = import.meta.env.OPENAI_LIKE_API_KEY ?? '';
+    const response = await fetch(`${base_url}/models`, {
+      headers: {
+        Authorization: `Bearer ${api_key}`,
+      },
+    });
+    const res = (await response.json()) as any;
     return res.data.map((model: any) => ({
       name: model.id,
       label: model.id,
       provider: 'OpenAILike',
     }));
- }catch (e) {
-   return []
- }
-
+  } catch (e) {
+    return [];
+  }
 }
 async function initializeModelList(): Promise<void> {
   const ollamaModels = await getOllamaModels();
   const openAiLikeModels = await getOpenAILikeModels();
-  MODEL_LIST = [...ollamaModels,...openAiLikeModels, ...staticModels];
+  MODEL_LIST = [...ollamaModels, ...openAiLikeModels, ...staticModels];
 }
 initializeModelList().then();
 export { getOllamaModels, getOpenAILikeModels, initializeModelList };
